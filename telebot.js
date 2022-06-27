@@ -1,6 +1,7 @@
 const Telegraf = require('telegraf');
+require('dotenv').config();
 const fs = require('fs');
-const bot = new Telegraf('5507298419:AAEWW3lrCC6EOdxACndRxP6spQr31mIpqfw');
+const bot = new Telegraf(process.env.BOT_TOKEN);
 const axios = require('axios');
 const apikey = '6c765c95485bcb42b401fef06843d14fd8fa9c2da0cdbb30eee7e3bbb9aacc10';
 
