@@ -1,1 +1,1 @@
-worker: node dist/telebot.js
+worker: node telebot.js
