@@ -54,6 +54,27 @@ bot.action('start', ctx => {
     })
 });
 
+bot.command('details', ctx => {
+    let startMessage = 'Which crypto coin intrigues you?';
+    ctx.deleteMessage();
+    bot.telegram.sendMessage(ctx.chat.id, startMessage, {
+        reply_markup: {
+            inline_keyboard: [
+                [
+                    { text: 'BTC', callback_data: 'price-BTC' },
+                    { text: 'ETH', callback_data: 'price-ETH' },
+                    { text: 'LTC', callback_data: 'price-LTC' },
+                    { text: 'XRP', callback_data: 'price-XRP' }
+                ],
+                [
+                    { text: 'Back to Main Page', callback_data: 'start' }
+                ]
+            ]
+        }
+
+    })
+});
+
 bot.action('details', ctx => {
     let startMessage = 'Which crypto coin intrigues you?';
     ctx.deleteMessage();
@@ -104,7 +125,6 @@ bot.action(details, async ctx => {
 });
 
 bot.command('cat', async ctx => {
-    ctx.deleteMessage();
     let res = await axios.get('https://aws.random.cat/meow');
     ctx.replyWithPhoto(res.data.file, {
         reply_markup: {
@@ -137,7 +157,6 @@ bot.action('cat', async ctx => {
 });
 
 bot.command('quote', async ctx => {
-    ctx.deleteMessage();
     let res = await axios.get('https://quotes15.p.rapidapi.com/quotes/random/', {
         headers: {
             'X-RapidAPI-Key': 'edcc22cbb0msh9c91aead66ee3e9p140364jsnd26f6d72f320',
@@ -201,7 +220,6 @@ bot.action('price', ctx => {
 
 bot.command('price', ctx => {
     let startMessage = 'Which crypto coin intrigues you?';
-    ctx.deleteMessage();
     bot.telegram.sendMessage(ctx.chat.id, startMessage, {
         reply_markup: {
             inline_keyboard: [
@@ -248,7 +266,6 @@ bot.action(price, async ctx => {
 
 bot.command('chart', ctx => {
     let startMessage = 'Which crypto chart intrigues you?';
-    ctx.deleteMessage();
     bot.telegram.sendMessage(ctx.chat.id, startMessage, {
         reply_markup: {
             inline_keyboard: [
