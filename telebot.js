@@ -161,8 +161,6 @@ bot.action(price, async ctx => {
     ctx.deleteMessage();
     let symbol = ctx.match.split(" ");
     try {
-        ctx.deleteMessage();
-        let chart = ctx.match.split(" ");
         let res = await axios.get(`https://api.chart-img.com/v1/tradingview/mini-chart?symbol=${symbol}&key=${chartimg}`, {
             responseType: "arraybuffer",
         });
