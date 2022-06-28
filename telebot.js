@@ -6,6 +6,11 @@ const axios = require('axios');
 const apikey = process.env.API_KEY;
 const chartimg = process.env.CHART_IMG;
 
+bot.command('help', ctx =>{
+    let Message = '/start Memulai aplikasi\n/details Informasi lengkap cryptocurrency\n/price Harga terkini\n/Chart Chart cryptocurrency\n/Cat Random cat pics\n/quote Random quotes'
+
+});
+
 bot.command('start', ctx => {
     let startMessage = 'Hi, welcome! What can I help you?';
     bot.telegram.sendMessage(ctx.chat.id, startMessage, {
@@ -98,6 +103,23 @@ bot.action(details, async ctx => {
     }
 });
 
+bot.command('cat', async ctx => {
+    ctx.deleteMessage();
+    let res = await axios.get('https://aws.random.cat/meow');
+    ctx.replyWithPhoto(res.data.file, {
+        reply_markup: {
+            inline_keyboard: [
+                [
+                    { text: 'Generate More', callback_data: 'cat' },
+                    { text: 'Back to Main Page', callback_data: 'start' }
+                ]
+            ]
+        }
+
+    });
+});
+
+
 bot.action('cat', async ctx => {
     ctx.deleteMessage();
     let res = await axios.get('https://aws.random.cat/meow');
@@ -106,6 +128,27 @@ bot.action('cat', async ctx => {
             inline_keyboard: [
                 [
                     { text: 'Generate More', callback_data: 'cat' },
+                    { text: 'Back to Main Page', callback_data: 'start' }
+                ]
+            ]
+        }
+
+    });
+});
+
+bot.command('quote', async ctx => {
+    ctx.deleteMessage();
+    let res = await axios.get('https://quotes15.p.rapidapi.com/quotes/random/', {
+        headers: {
+            'X-RapidAPI-Key': 'edcc22cbb0msh9c91aead66ee3e9p140364jsnd26f6d72f320',
+            'X-RapidAPI-Host': 'quotes15.p.rapidapi.com'
+        }
+    });
+    ctx.reply(res.data.content, {
+        reply_markup: {
+            inline_keyboard: [
+                [
+                    { text: 'Generate More', callback_data: 'quote' },
                     { text: 'Back to Main Page', callback_data: 'start' }
                 ]
             ]
@@ -156,6 +199,29 @@ bot.action('price', ctx => {
     })
 });
 
+bot.command('price', ctx => {
+    let startMessage = 'Which crypto coin intrigues you?';
+    ctx.deleteMessage();
+    bot.telegram.sendMessage(ctx.chat.id, startMessage, {
+        reply_markup: {
+            inline_keyboard: [
+                [
+                    { text: 'BTC', callback_data: 'BINANCE:BTCUSDT' },
+                    { text: 'ETH', callback_data: 'BINANCE:ETHUSDT' },
+                    { text: 'LTC', callback_data: 'BINANCE:LTCUSDT' },
+                    { text: 'XRP', callback_data: 'BINANCE:XRPUSDT' }
+                ],
+                [
+                    { text: 'Back to Main Page', callback_data: 'start' }
+                ]
+            ]
+        }
+
+    })
+});
+
+
+
 let price = ['BINANCE:BTCUSDT', 'BINANCE:ETHUSDT', 'BINANCE:LTCUSDT', 'BINANCE:XRPUSDT'];
 bot.action(price, async ctx => {
     ctx.deleteMessage();
@@ -178,6 +244,45 @@ bot.action(price, async ctx => {
         console.log(err);
         ctx.reply("Error!!!");
     }
+});
+
+bot.command('chart', ctx => {
+    let startMessage = 'Which crypto chart intrigues you?';
+    ctx.deleteMessage();
+    bot.telegram.sendMessage(ctx.chat.id, startMessage, {
+        reply_markup: {
+            inline_keyboard: [
+                [
+                    { text: 'BTC, 1m', callback_data: 'BTC, 1m' },
+                    { text: 'BTC, 1h', callback_data: 'BTC, 1h' },
+                    { text: 'BTC, 1d', callback_data: 'BTC, 1d' },
+                    { text: 'BTC, 1w', callback_data: 'BTC, 1w' },
+                ],
+                [
+                    { text: 'ETH, 1m', callback_data: 'ETH, 1m' },
+                    { text: 'ETH, 1h', callback_data: 'ETH, 1h' },
+                    { text: 'ETH, 1d', callback_data: 'ETH, 1d' },
+                    { text: 'ETH, 1w', callback_data: 'ETH, 1w' },
+                ],
+                [
+                    { text: 'LTC, 1m', callback_data: 'LTC, 1m' },
+                    { text: 'LTC, 1h', callback_data: 'LTC, 1h' },
+                    { text: 'LTC, 1d', callback_data: 'LTC, 1d' },
+                    { text: 'LTC, 1w', callback_data: 'LTC, 1w' },
+                ],
+                [
+                    { text: 'XRP, 1m', callback_data: 'XRP, 1m' },
+                    { text: 'XRP, 1h', callback_data: 'XRP, 1h' },
+                    { text: 'XRP, 1d', callback_data: 'XRP, 1d' },
+                    { text: 'XRP, 1w', callback_data: 'XRP, 1w' },
+                ],
+                [
+                    { text: 'Back to Main Page', callback_data: 'start' }
+                ]
+            ]
+        }
+
+    })
 });
 
 bot.action('chart', ctx => {
