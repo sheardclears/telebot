@@ -7,8 +7,8 @@ const apikey = process.env.API_KEY;
 const chartimg = process.env.CHART_IMG;
 
 bot.command('help', ctx =>{
-    let Message = '/start Memulai aplikasi\n/details Informasi lengkap cryptocurrency\n/price Harga terkini\n/Chart Chart cryptocurrency\n/Cat Random cat pics\n/quote Random quotes'
-
+    let Message = '/start Memulai aplikasi\n/details Informasi lengkap cryptocurrency\n/price Harga terkini\n/Chart Chart cryptocurrency\n/Cat Random cat pics\n/quote Random quotes';
+    bot.telegram.sendMessage(ctx.chat.id, Message);
 });
 
 bot.command('start', ctx => {
