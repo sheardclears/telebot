@@ -1,1 +1,1 @@
-worker: node telebot.js
+worker: nodemon telebot.js
