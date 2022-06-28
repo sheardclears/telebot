@@ -3,7 +3,8 @@ require('dotenv').config();
 const fs = require('fs');
 const bot = new Telegraf(process.env.BOT_TOKEN);
 const axios = require('axios');
-const apikey = '6c765c95485bcb42b401fef06843d14fd8fa9c2da0cdbb30eee7e3bbb9aacc10';
+const apikey = process.env.API_KEY;
+const chartimg = process.env.CHART_IMG;
 
 bot.command('start', ctx => {
     let startMessage = 'Hi, welcome! What can I help you?';
@@ -162,7 +163,7 @@ bot.action(price, async ctx => {
     try {
         ctx.deleteMessage();
         let chart = ctx.match.split(" ");
-        let res = await axios.get(`https://api.chart-img.com/v1/tradingview/mini-chart?symbol=${symbol}&key=yl7zpmnNQsa0gmMQ3X6C98nTulV8GfOp9UCQhzuM`, {
+        let res = await axios.get(`https://api.chart-img.com/v1/tradingview/mini-chart?symbol=${symbol}&key=${chartimg}`, {
             responseType: "arraybuffer",
         });
         ctx.replyWithPhoto({ source: Buffer.from(res.data, 'base64') }, {
@@ -223,7 +224,7 @@ bot.action('chart', ctx => {
 bot.action('BTC, 1m', async ctx => {
     ctx.deleteMessage();
     let chart = ctx.match.split(" ");
-    let res = await axios.get(`https://api.chart-img.com/v1/tradingview/advanced-chart?symbol=BINANCE:BTCUSDT&interval=1m&key=yl7zpmnNQsa0gmMQ3X6C98nTulV8GfOp9UCQhzuM`, {
+    let res = await axios.get(`https://api.chart-img.com/v1/tradingview/advanced-chart?symbol=BINANCE:BTCUSDT&interval=1m&key=${chartimg}`, {
         responseType: "arraybuffer",
     });
     ctx.replyWithPhoto({ source: Buffer.from(res.data, 'base64') }, {
@@ -242,7 +243,7 @@ bot.action('BTC, 1m', async ctx => {
 bot.action('BTC, 1h', async ctx => {
     ctx.deleteMessage();
     let chart = ctx.match.split(" ");
-    let res = await axios.get(`https://api.chart-img.com/v1/tradingview/advanced-chart?symbol=BINANCE:BTCUSDT&interval=1h&key=yl7zpmnNQsa0gmMQ3X6C98nTulV8GfOp9UCQhzuM`, {
+    let res = await axios.get(`https://api.chart-img.com/v1/tradingview/advanced-chart?symbol=BINANCE:BTCUSDT&interval=1h&key=${chartimg}`, {
         responseType: "arraybuffer",
     });
     ctx.replyWithPhoto({ source: Buffer.from(res.data, 'base64') }, {
@@ -261,7 +262,7 @@ bot.action('BTC, 1h', async ctx => {
 bot.action('BTC, 1d', async ctx => {
     ctx.deleteMessage();
     let chart = ctx.match.split(" ");
-    let res = await axios.get(`https://api.chart-img.com/v1/tradingview/advanced-chart?symbol=BINANCE:BTCUSDT&interval=1d&key=yl7zpmnNQsa0gmMQ3X6C98nTulV8GfOp9UCQhzuM`, {
+    let res = await axios.get(`https://api.chart-img.com/v1/tradingview/advanced-chart?symbol=BINANCE:BTCUSDT&interval=1d&key=${chartimg}`, {
         responseType: "arraybuffer",
     });
     ctx.replyWithPhoto({ source: Buffer.from(res.data, 'base64') }, {
@@ -280,7 +281,7 @@ bot.action('BTC, 1d', async ctx => {
 bot.action('BTC, 1w', async ctx => {
     ctx.deleteMessage();
     let chart = ctx.match.split(" ");
-    let res = await axios.get(`https://api.chart-img.com/v1/tradingview/advanced-chart?symbol=BINANCE:BTCUSDT&interval=1w&key=yl7zpmnNQsa0gmMQ3X6C98nTulV8GfOp9UCQhzuM`, {
+    let res = await axios.get(`https://api.chart-img.com/v1/tradingview/advanced-chart?symbol=BINANCE:BTCUSDT&interval=1w&key=${chartimg}`, {
         responseType: "arraybuffer",
     });
     ctx.replyWithPhoto({ source: Buffer.from(res.data, 'base64') }, {
@@ -299,7 +300,7 @@ bot.action('BTC, 1w', async ctx => {
 bot.action('ETH, 1m', async ctx => {
     ctx.deleteMessage();
     let chart = ctx.match.split(" ");
-    let res = await axios.get(`https://api.chart-img.com/v1/tradingview/advanced-chart?symbol=BINANCE:ETHUSDT&interval=1m&key=yl7zpmnNQsa0gmMQ3X6C98nTulV8GfOp9UCQhzuM`, {
+    let res = await axios.get(`https://api.chart-img.com/v1/tradingview/advanced-chart?symbol=BINANCE:ETHUSDT&interval=1m&key=${chartimg}`, {
         responseType: "arraybuffer",
     });
     ctx.replyWithPhoto({ source: Buffer.from(res.data, 'base64') }, {
@@ -318,7 +319,7 @@ bot.action('ETH, 1m', async ctx => {
 bot.action('ETH, 1h', async ctx => {
     ctx.deleteMessage();
     let chart = ctx.match.split(" ");
-    let res = await axios.get(`https://api.chart-img.com/v1/tradingview/advanced-chart?symbol=BINANCE:ETHUSDT&interval=1h&key=yl7zpmnNQsa0gmMQ3X6C98nTulV8GfOp9UCQhzuM`, {
+    let res = await axios.get(`https://api.chart-img.com/v1/tradingview/advanced-chart?symbol=BINANCE:ETHUSDT&interval=1h&key=${chartimg}`, {
         responseType: "arraybuffer",
     });
     ctx.replyWithPhoto({ source: Buffer.from(res.data, 'base64') }, {
@@ -337,7 +338,7 @@ bot.action('ETH, 1h', async ctx => {
 bot.action('ETH, 1d', async ctx => {
     ctx.deleteMessage();
     let chart = ctx.match.split(" ");
-    let res = await axios.get(`https://api.chart-img.com/v1/tradingview/advanced-chart?symbol=BINANCE:ETHUSDT&interval=1d&key=yl7zpmnNQsa0gmMQ3X6C98nTulV8GfOp9UCQhzuM`, {
+    let res = await axios.get(`https://api.chart-img.com/v1/tradingview/advanced-chart?symbol=BINANCE:ETHUSDT&interval=1d&key=${chartimg}`, {
         responseType: "arraybuffer",
     });
     ctx.replyWithPhoto({ source: Buffer.from(res.data, 'base64') }, {
@@ -356,7 +357,7 @@ bot.action('ETH, 1d', async ctx => {
 bot.action('ETH, 1w', async ctx => {
     ctx.deleteMessage();
     let chart = ctx.match.split(" ");
-    let res = await axios.get(`https://api.chart-img.com/v1/tradingview/advanced-chart?symbol=BINANCE:ETHUSDT&interval=1w&key=yl7zpmnNQsa0gmMQ3X6C98nTulV8GfOp9UCQhzuM`, {
+    let res = await axios.get(`https://api.chart-img.com/v1/tradingview/advanced-chart?symbol=BINANCE:ETHUSDT&interval=1w&key=${chartimg}`, {
         responseType: "arraybuffer",
     });
     ctx.replyWithPhoto({ source: Buffer.from(res.data, 'base64') }, {
@@ -375,7 +376,7 @@ bot.action('ETH, 1w', async ctx => {
 bot.action('XRP, 1m', async ctx => {
     ctx.deleteMessage();
     let chart = ctx.match.split(" ");
-    let res = await axios.get(`https://api.chart-img.com/v1/tradingview/advanced-chart?symbol=BINANCE:XRPUSDT&interval=1m&key=yl7zpmnNQsa0gmMQ3X6C98nTulV8GfOp9UCQhzuM`, {
+    let res = await axios.get(`https://api.chart-img.com/v1/tradingview/advanced-chart?symbol=BINANCE:XRPUSDT&interval=1m&key=${chartimg}`, {
         responseType: "arraybuffer",
     });
     ctx.replyWithPhoto({ source: Buffer.from(res.data, 'base64') }, {
@@ -394,7 +395,7 @@ bot.action('XRP, 1m', async ctx => {
 bot.action('XRP, 1h', async ctx => {
     ctx.deleteMessage();
     let chart = ctx.match.split(" ");
-    let res = await axios.get(`https://api.chart-img.com/v1/tradingview/advanced-chart?symbol=BINANCE:XRPUSDT&interval=1h&key=yl7zpmnNQsa0gmMQ3X6C98nTulV8GfOp9UCQhzuM`, {
+    let res = await axios.get(`https://api.chart-img.com/v1/tradingview/advanced-chart?symbol=BINANCE:XRPUSDT&interval=1h&key=${chartimg}`, {
         responseType: "arraybuffer",
     });
     ctx.replyWithPhoto({ source: Buffer.from(res.data, 'base64') }, {
@@ -413,7 +414,7 @@ bot.action('XRP, 1h', async ctx => {
 bot.action('XRP, 1d', async ctx => {
     ctx.deleteMessage();
     let chart = ctx.match.split(" ");
-    let res = await axios.get(`https://api.chart-img.com/v1/tradingview/advanced-chart?symbol=BINANCE:XRPUSDT&interval=1d&key=yl7zpmnNQsa0gmMQ3X6C98nTulV8GfOp9UCQhzuM`, {
+    let res = await axios.get(`https://api.chart-img.com/v1/tradingview/advanced-chart?symbol=BINANCE:XRPUSDT&interval=1d&key=${chartimg}`, {
         responseType: "arraybuffer",
     });
     ctx.replyWithPhoto({ source: Buffer.from(res.data, 'base64') }, {
@@ -432,7 +433,7 @@ bot.action('XRP, 1d', async ctx => {
 bot.action('XRP, 1w', async ctx => {
     ctx.deleteMessage();
     let chart = ctx.match.split(" ");
-    let res = await axios.get(`https://api.chart-img.com/v1/tradingview/advanced-chart?symbol=BINANCE:XRPUSDT&interval=1w&key=yl7zpmnNQsa0gmMQ3X6C98nTulV8GfOp9UCQhzuM`, {
+    let res = await axios.get(`https://api.chart-img.com/v1/tradingview/advanced-chart?symbol=BINANCE:XRPUSDT&interval=1w&key=${chartimg}`, {
         responseType: "arraybuffer",
     });
     ctx.replyWithPhoto({ source: Buffer.from(res.data, 'base64') }, {
@@ -451,7 +452,7 @@ bot.action('XRP, 1w', async ctx => {
 bot.action('LTC, 1m', async ctx => {
     ctx.deleteMessage();
     let chart = ctx.match.split(" ");
-    let res = await axios.get(`https://api.chart-img.com/v1/tradingview/advanced-chart?symbol=BINANCE:LTCUSDT&interval=1m&key=yl7zpmnNQsa0gmMQ3X6C98nTulV8GfOp9UCQhzuM`, {
+    let res = await axios.get(`https://api.chart-img.com/v1/tradingview/advanced-chart?symbol=BINANCE:LTCUSDT&interval=1m&key=${chartimg}`, {
         responseType: "arraybuffer",
     });
     ctx.replyWithPhoto({ source: Buffer.from(res.data, 'base64') }, {
@@ -471,7 +472,7 @@ bot.action('LTC, 1m', async ctx => {
 bot.action('LTC, 1h', async ctx => {
     ctx.deleteMessage();
     let chart = ctx.match.split(" ");
-    let res = await axios.get(`https://api.chart-img.com/v1/tradingview/advanced-chart?symbol=BINANCE:LTCUSDT&interval=1h&key=yl7zpmnNQsa0gmMQ3X6C98nTulV8GfOp9UCQhzuM`, {
+    let res = await axios.get(`https://api.chart-img.com/v1/tradingview/advanced-chart?symbol=BINANCE:LTCUSDT&interval=1h&key=${chartimg}`, {
         responseType: "arraybuffer",
     });
     ctx.replyWithPhoto({ source: Buffer.from(res.data, 'base64') }, {
@@ -490,7 +491,7 @@ bot.action('LTC, 1h', async ctx => {
 bot.action('LTC, 1d', async ctx => {
     ctx.deleteMessage();
     let chart = ctx.match.split(" ");
-    let res = await axios.get(`https://api.chart-img.com/v1/tradingview/advanced-chart?symbol=BINANCE:LTCUSDT&interval=1d&key=yl7zpmnNQsa0gmMQ3X6C98nTulV8GfOp9UCQhzuM`, {
+    let res = await axios.get(`https://api.chart-img.com/v1/tradingview/advanced-chart?symbol=BINANCE:LTCUSDT&interval=1d&key=${chartimg}`, {
         responseType: "arraybuffer",
     });
     ctx.replyWithPhoto({ source: Buffer.from(res.data, 'base64') }, {
@@ -509,7 +510,7 @@ bot.action('LTC, 1d', async ctx => {
 bot.action('LTC, 1w', async ctx => {
     ctx.deleteMessage();
     let chart = ctx.match.split(" ");
-    let res = await axios.get(`https://api.chart-img.com/v1/tradingview/advanced-chart?symbol=BINANCE:LTCUSDT&interval=1w&key=yl7zpmnNQsa0gmMQ3X6C98nTulV8GfOp9UCQhzuM`, {
+    let res = await axios.get(`https://api.chart-img.com/v1/tradingview/advanced-chart?symbol=BINANCE:LTCUSDT&interval=1w&key=${chartimg}`, {
         responseType: "arraybuffer",
     });
     ctx.replyWithPhoto({ source: Buffer.from(res.data, 'base64') }, {
