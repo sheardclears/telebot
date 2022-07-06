@@ -56,7 +56,6 @@ bot.action('start', ctx => {
 
 bot.command('details', ctx => {
     let startMessage = 'Which crypto coin intrigues you?';
-    ctx.deleteMessage();
     bot.telegram.sendMessage(ctx.chat.id, startMessage, {
         reply_markup: {
             inline_keyboard: [
